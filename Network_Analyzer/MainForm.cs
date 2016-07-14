@@ -131,7 +131,7 @@ namespace Network_Analyzer
 			//Запускаем процесс
 			proc.Start();
 			 
-			//Ждем, пока блокнот запущен
+			//Ждем, пока процесс запущен
 			proc.WaitForExit();
 		}
 	}

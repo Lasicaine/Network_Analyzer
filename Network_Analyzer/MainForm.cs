@@ -35,68 +35,69 @@ namespace Network_Analyzer
 		}
 		
 		
-		private void Button1Click(object sender, EventArgs e)
+		private void ButtonGetIPClick(object sender, EventArgs e)
 		{
-			try {
-			listBox1.Items.Clear();
-			System.Net.IPHostEntry host;
-			host = System.Net.Dns.GetHostEntry(textBox1.Text);
-			
-			foreach (System.Net.IPAddress ip in host.AddressList)
-			{
-				listBox1.Items.Add(ip.ToString());
-			}
-			}
-			catch (Exception err) 
-			{ 
-			// Выводим сообщение об ошибке 
-			MessageBox.Show("Адрес не достижим"); 
-			return; 
-					}
-		}
-		
-		 private void Button2Click(object sender, EventArgs e)
+            try
+            {
+                listBoxResult.Items.Clear();
+                System.Net.IPHostEntry host;
+                host = System.Net.Dns.GetHostEntry(textBox1.Text);
+
+                foreach (System.Net.IPAddress ip in host.AddressList)
+                {
+                    listBoxResult.Items.Add(ip.ToString());
+                }
+            }
+            catch (Exception err)
+            {
+                // Выводим сообщение об ошибке 
+                MessageBox.Show("Address Unreachable");
+                return;
+            }
+        }
+
+        private void ButtonPingClick(object sender, EventArgs e)
 		{
 		 	try {
 		 	Ping pingSender = new Ping();
 			PingReply reply = pingSender.Send(textBox1.Text);
-			listBox1.Items.Clear();
+			listBoxResult.Items.Clear();
 			if (reply.Status == IPStatus.Success)
 			{
-				listBox1.Items.Add("Adress: " + reply.Address.ToString());
-				listBox1.Items.Add("RoundTrip time: " + reply.RoundtripTime);
-				listBox1.Items.Add("Time to live: " + reply.Options.Ttl);
-				listBox1.Items.Add("Don't fragment: " + reply.Options.DontFragment);
-				listBox1.Items.Add("Buffer size: " + reply.Buffer.Length);
+				listBoxResult.Items.Add("Address: " + reply.Address.ToString());
+				listBoxResult.Items.Add("RoundTrip time: " + reply.RoundtripTime);
+				listBoxResult.Items.Add("Time to live: " + reply.Options.Ttl);
+				listBoxResult.Items.Add("Don't fragment: " + reply.Options.DontFragment);
+				listBoxResult.Items.Add("Buffer size: " + reply.Buffer.Length);
 			}
 			else
 			{ 
-				listBox1.Items.Add(reply.Status);
+				listBoxResult.Items.Add(reply.Status);
 			} 
 		 	}
 			catch (Exception err) 
 			{ 
 			// Выводим сообщение об ошибке 
-			MessageBox.Show("Адрес не достижим"); 
+			MessageBox.Show("Address Unreachable"); 
 			return; 
 					}
 		}
 		
-		void Button3Click(object sender, EventArgs e)
+		void ButtonGetDNSClick(object sender, EventArgs e)
 		{
 			try {
-			listBox1.Items.Clear();
-			string name = "Неизвестно";
+			listBoxResult.Items.Clear();
+			string name = "Unknown";
 			
 			name = Dns.GetHostEntry(textBox1.Text).HostName;
 			
-				listBox1.Items.Add(name);
+				listBoxResult.Items.Add(name);
 		
 			}
 			catch (Exception err) 
 			{ 
 			// Выводим сообщение об ошибке 
-			MessageBox.Show("Адрес не достижим"); 
+			MessageBox.Show("Address Unreachable"); 
 			return; 
 					}
 		}
@@ -117,7 +118,7 @@ namespace Network_Analyzer
 		} */
 	
 		
-		void Button4Click(object sender, EventArgs e)
+		void ButtonPortScannerClick(object sender, EventArgs e)
 		{
 			ProcessStartInfo stInfo =
   			new ProcessStartInfo("PortScan");
@@ -134,5 +135,6 @@ namespace Network_Analyzer
 			//Ждем, пока процесс запущен
 			proc.WaitForExit();
 		}
-	}
+
+    }
 }

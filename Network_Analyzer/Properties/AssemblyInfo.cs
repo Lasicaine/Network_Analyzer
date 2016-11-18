@@ -12,9 +12,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Network_Analyzer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("AlexDevTeam")]
 [assembly: AssemblyProduct("Network_Analyzer")]
-[assembly: AssemblyCopyright("Copyright Antomonov Aleksandr © 2011")]
+[assembly: AssemblyCopyright("Copyright Alex Antomonov © 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
